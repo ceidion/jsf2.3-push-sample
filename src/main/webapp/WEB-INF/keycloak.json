@@ -1,0 +1,7 @@
+{
+  "realm": "apprealm",
+  "auth-server-url": "http://192.168.99.100:8080/auth",
+  "ssl-required": "external",
+  "resource": "push",
+  "public-client": true
+}

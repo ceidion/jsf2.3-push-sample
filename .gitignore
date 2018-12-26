@@ -1,4 +1,4 @@
 target
-/bin/
-.idea
-.iml
+**/bin/*
+**.idea
+*.iml
