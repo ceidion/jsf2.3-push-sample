@@ -25,6 +25,9 @@ public class Controller implements Serializable {
     @Inject
     HttpServletRequest servletRequest;
 
+    @Inject
+    private transient PushMessageProducer messageProducer;
+
 
     public Controller() {
         super();
@@ -32,10 +35,12 @@ public class Controller implements Serializable {
 
     public void sendGlobalMessage() {
         logger.info("Sending global message");
+        messageProducer.sendMessage();
     }
 
     public void sendPrivateMessage() {
         logger.info("Sending private message to user " + notifiedUser);
+        messageProducer.sendUserMessage(notifiedUser);
     }
 
     public void receiveNotification() {
@@ -44,6 +49,7 @@ public class Controller implements Serializable {
                 .getRequest();
 
         notification = req.getParameter("not");
+        logger.info("Notification payload" + notification);
 
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Notification", notification));
