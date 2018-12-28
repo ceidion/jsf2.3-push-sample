@@ -8,8 +8,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <body>
 <p:growl id="notificationsPanel" showDetail="true" sticky="true"/>
-<f:websocket channel="globalNotifications" onmessage="notificationListener"/>
-<f:websocket channel="userNotifications" user="#{controller.remoteUser}" onmessage="notificationListener"/>
+
 <h:form>
     <p:commandButton value="Simulate APPLICATION event generation" action="#{controller.sendGlobalMessage}"/>
     <br/>
@@ -23,5 +22,7 @@
     <h:commandScript name="notificationListener" action="#{controller.receiveNotification}"
                      render="notificationsPanel"/>
 </h:form>
+<f:websocket channel="globalNotifications" onmessage="notificationListener"/>
+<f:websocket channel="userNotifications" user="#{controller.remoteUser}" onmessage="notificationListener"/>
 </body>
 </html>
